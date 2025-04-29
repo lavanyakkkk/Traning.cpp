@@ -1,25 +1,36 @@
 
 #include <iostream>
+#include <cmath>
+
 using namespace std;
-int main()
-{
-	int  num,sum = 0, temporary_digit,res;
-	cout << "enter a number:";
-	cin >> num;
-	 
-	temporary_digit = num;
 
-	while (temporary_digit > 0)
-	{
-		res = temporary_digit % 10;
-		sum += res*res*res;
-		temporary_digit /= 10;
+bool isArmstrong(int num) {
+    if (num < 0) {
+        num = abs(num);
+    }
+    if (num == 0) {
+        return true;
+    }
+    int num_digits = floor(log10(num)) + 1;
+    int original_Number = num, sum = 0;
+    
+    while (num > 0) {
+        int digit = num % 10;
+        sum += pow(digit, num_digits);
+        num /= 10;
+    }
+    return sum == original_Number;
+}
 
-
-	}
-	if (sum == num)
-		cout << num << "It's armstrong number" << endl;
-	else
-		cout << num << "It's not a armstrong number" << endl;
-	return 0;
+int main() {
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+    if (isArmstrong(n)) {
+        cout << n << " is an Armstrong number." << endl;
+    }
+    else {
+        cout << n << " is not an Armstrong number." << endl;
+    }
+    return 0;
 }
