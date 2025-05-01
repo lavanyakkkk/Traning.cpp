@@ -1,18 +1,17 @@
 #include <iostream>
 using namespace std;
-int n,sum=0;
-int main()
-{
 
-	cout << "enter number: ";
-	cin >> n;
-	for (int i = 0;i <= n;i++)
-	{
-		sum = sum + i;
+int add(int a, int b) {
+	return a + b;
+}
 
-		
-
-	}
-	cout << sum;
+int main() {
+	int  num1, num2;
+	cout << "enter two numbers:" << endl;
+	cin >> num1 >> num2;
+	int res = add(num1, num2);
+	if (res % 2 == 0)
+		cout << "teh given number is even" << res << endl;
 	return 0;
+
 }
