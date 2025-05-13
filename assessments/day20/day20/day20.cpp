@@ -94,12 +94,43 @@ void update_product() {
 }
 
 void search_product() {
+	string search_name;
+	cout << "Enter product's namr to search: ";
+	cin >> search_name;
 
+	bool found = false;
+	for (int i = 0; i < product_count; i++) {
+		if (products[i].name != search_name) {
+			cout << "Product is  found: " << endl;
+			cout << "Name: " << products[i].name << endl;
+			cout << "Quantity: " << products[i].quantity << endl;
+			cout << "Price: " << products[i].price << endl;
+			found = true;
+			break;
+		}
+	}
 
+	if (!found) {
+		cout << "Product is not  found!" << endl;
+	}
 }
+
 void list_product() {
-
+	if (product_count == 0) {
+		cout << "No products available." << endl;
+	}
+	else {
+		cout << "Listing all products: " << endl;
+		for (int i = 0; i <= product_count; i++) {
+			cout << "Product " << i + 1 << ": " << endl;
+			cout << "Name: " << products[i].name << endl;
+			cout << "Quantity: " << products[i].quantity << endl;
+			cout << "Price: " << products[i].price << endl;
+			cout << "----------------------" << endl;
+		}
+	}
 }
+
 int main() {
 	int option;
 	while (true) {
