@@ -121,7 +121,7 @@ void list_product() {
 	}
 	else {
 		cout << "Listing all products: " << endl;
-		for (int i = 0; i <= product_count; i++) {
+		for (int i = 0; i < product_count; i++) {
 			cout << "Product " << i + 1 << ": " << endl;
 			cout << "Name: " << products[i].name << endl;
 			cout << "Quantity: " << products[i].quantity << endl;
