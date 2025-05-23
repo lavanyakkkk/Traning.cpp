@@ -45,7 +45,7 @@ public:
     }
     void bookSeats(int seats) {
         if (seats <= 0) {
-            cout << "Invalid number of seats: " << seats << endl;
+            cout << "Invalid "<< seats << endl;
         }
         else if (seats > (totalSeats - bookedSeats)) {
             cout << "Booking Failed: Not enough seats." << endl;
