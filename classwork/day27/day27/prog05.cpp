@@ -3,7 +3,7 @@ using namespace std;
 class T {
 private:
 	static int val;
-	
+	//
 
 
 public:
@@ -13,6 +13,7 @@ public:
 };
 int T::val;
 int main() {
-	T t1;
-	t1.disp();
+	  T t1;
+	  t1.disp();
+	//cout << T::val << endl;
 }

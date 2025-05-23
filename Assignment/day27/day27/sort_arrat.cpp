@@ -16,11 +16,11 @@ public:
 			cin >> arr[i];
 		}
 	}
-	void max_element() 
+	void max_element()
 	{
-		int max = arr[0]; 
+		int max = arr[0];
 		for (int i = 0;i < size;i++) {
-			if (arr[i]>max) {
+			if (arr[i] > max) {
 				max = arr[i];
 			}
 		}
@@ -36,14 +36,14 @@ public:
 
 				}
 			}
-			
+
 		}
 		cout << "The sorted elements in descending order is : ";
 		for (int i = 0;i < size;i++) {
-			cout << arr[i]<<" ";
+			cout << arr[i] << " ";
 		}
-		cout <<endl;
-		
+		cout << endl;
+
 	}
 	void sort_ascending() {
 		for (int i = 0;i < size - 1;i++) {
@@ -61,7 +61,7 @@ public:
 		}
 		cout << endl;
 	}
-	
+
 };
 int main() {
 	Array_elements a;
@@ -70,6 +70,6 @@ int main() {
 	a.sort_descending();
 	a.sort_ascending();
 	return 0;
-	
+
 
 }

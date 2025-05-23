@@ -15,25 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="sort_arrat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prg02.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prog03.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prog04.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prog05.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="class_array.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="array_number.cpp">
+    <ClCompile Include="array_num.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
