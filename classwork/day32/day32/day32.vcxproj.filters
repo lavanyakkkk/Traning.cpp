@@ -15,16 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="multiple_inherit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog02.cpp">
+    <ClCompile Include="multilevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exam_pop_push.cpp">
+    <ClCompile Include="prog03.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="employee.cpp">
+    <ClCompile Include="prog04.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hieraral_in.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hybrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="baseclass_pointer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prob3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prob01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

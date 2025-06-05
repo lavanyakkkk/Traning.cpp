@@ -15,16 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="constexpre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog02.cpp">
+    <ClCompile Include="namespace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exam_pop_push.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="employee.cpp">
+    <ClCompile Include="namespace_nested.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

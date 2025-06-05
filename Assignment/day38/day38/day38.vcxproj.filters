@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="cursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog02.cpp">
+    <ClCompile Include="batch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exam_pop_push.cpp">
+    <ClCompile Include="problem4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="employee.cpp">
+    <ClCompile Include="chat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

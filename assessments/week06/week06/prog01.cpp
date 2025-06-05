@@ -2,8 +2,6 @@
 Objective: Create a class to manage flight seat reservations. Each flight has a seat count and a record of bookings.
 */
 
-
-
 #include <iostream>
 #include <cstring>
 using namespace std;

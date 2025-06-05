@@ -15,17 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog02.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="linkedlist.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exam_pop_push.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="employee.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>

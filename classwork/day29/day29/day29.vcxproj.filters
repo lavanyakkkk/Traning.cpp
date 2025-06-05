@@ -15,16 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
+    <ClCompile Include="queue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prog02.cpp">
+    <ClCompile Include="queue_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exam_pop_push.cpp">
+    <ClCompile Include="linked_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="employee.cpp">
+    <ClCompile Include="p1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
