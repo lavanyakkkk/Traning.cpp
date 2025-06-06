@@ -15,22 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cursor.cpp">
+    <ClCompile Include="map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="batch.cpp">
+    <ClCompile Include="map2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="chat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="p2problem1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="p2problem2.cpp">
+    <ClCompile Include="mutliset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -19,7 +19,7 @@ public:
 
 	void movingUp() {
 		if (cursor != textBuffer.begin()) {
-			cursor++;
+			cursor--;
 		}
 		else {
 			cout << "they are at top" << endl;
