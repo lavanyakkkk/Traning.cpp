@@ -81,7 +81,7 @@ using namespace std;
 int main() {
 	vector<string>word = { "apple","banana","apple","orange","grapes","grapes" };
 	set<string>unique_words;
-	for (auto const it : word) {
+	for (auto const it : word) { 
 		unique_words.insert(it);
 	}
 	cout << "unique elements are : " << endl;
