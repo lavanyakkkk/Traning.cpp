@@ -1,0 +1,285 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <thread>
+#include <sstream>
+#include <mutex>
+using namespace std;
+
+class user {
+public:
+	string username;
+	string password;
+};
+vector<user>users;
+void signUp() {
+    user newone;
+    cout << "enter the username: " << endl;
+    cin>> newone.username;
+    cout << "enter the password: " << endl;
+    cin >> newone.password;
+    for (user i : users) {
+        if (i.username == newone.username) {
+            cout << "USERNAME ALREADY EXIST" << endl;
+        }
+    }
+    users.push_back(newone);
+    cout << "Sign-up successfull" << endl;
+}
+bool login() {
+    string name, passwrd;
+    cout << "enter the username: " << endl;
+    cin >> name;
+    cout << "enter password: " << endl;
+    cin >> passwrd;
+    for (user i : users) {
+        if (i.username == name && i.password == passwrd) {
+            cout << "Login was successfull" << endl;
+        }
+    }
+    cout << "wrong credentials u have given" << endl;
+}
+class customerBill {
+public:
+    string brand;
+    string MSISDN;
+    string MNC;
+    int outgoingInternal = 0;
+    int incomingInternal= 0;
+    int outgoingExternal = 0;
+    int incomingExternal = 0;
+    int outSMSInternal = 0;
+    int inSMSInternal = 0;
+    int outSMSExternal = 0;
+    int inSMSExternal = 0;
+    int mbDownload = 0;
+    int mbUpload = 0;
+};
+
+class interOperator {
+public:
+    string brand;
+    string MNC;
+    int inComingDuration = 0;
+    int outGoingDUration = 0;
+    int inComingSms = 0;
+    int outGoingSms = 0;
+    int mbDownLoad = 0;
+    int mbUpload = 0;
+};
+vector<customerBill>customer;
+vector<interOperator>operators;
+
+vector<string>getline(string l, char delimiter) {
+    vector<string>separate;
+    string temporary;
+    for (char c : l) {
+        if (c == delimiter) {
+            separate.push_back(temporary);
+        }
+        else {
+            temporary += c;
+        }
+    }
+    separate.emplace_back(temporary);
+   
+}
+customerBill* getCustomer(string MSISDN, string brand, string MNC) {
+    for (auto& c : customer) {
+        if (c.MSISDN == c.MSISDN) {
+            return &c;
+        }
+    }
+    customer.push_back({ MSISDN });
+    customer.push_back({ brand });
+    customer.push_back({ MNC });
+    return &customer.back();
+}
+interOperator* getOperator(string MNC, string band) {
+    for (auto& o : operators) {
+        if (o.MNC == o.MNC) {
+            return &o;
+        }
+    }
+    operators.push_back({ MNC });
+    operators.push_back({band});
+}
+mutex customerMutex;
+mutex operatorMutex;
+
+void processCustomer(const string& fileName) {
+    ifstream file(fileName);
+    if (!file.is_open()) {
+        cout << "error,the cdr file its not opening" << endl;
+        return;
+    }
+    string line;
+    while (getline(file, line)) {
+        auto fields = split(line,'|');
+        if (fields.size() < 10) {
+            continue;
+        }
+       // size_t start = fields.find("|");
+       // size_t end = fields.find("o");
+
+        string MSISDN =stoi( fields.substr(1, 6));
+        string brand = stoi(fields.substr(7, 13));
+        string MNC = stoi(fields.substr(15, 19));
+        string type = stoi(fields.substr(20, 27));
+        int duration = stoi(fields.substr(28, 31));
+        string toMNC = fields.substr(31, 37);
+        string MTC = stoi(fields.substr(38, 41));
+        string toMTC = stoi(fields.substr(42, 47));
+        string SMSMO = stoi(fields.substring(48,51));
+        string toSMSMO = stoi(fields.substring(51,55));
+
+        lock_guard<mutex>lock(customerMutex);
+        auto* c = getCustomer(MSISDN, brand, MNC);
+        if (type == "MOC") {
+            if (MNC == toMNC) {
+                c->outgoingInternal += duration;
+            }
+            else {
+                c->outgoingExternal += duration;
+            }
+        }
+        if (type == "MTC") {
+            if (MTC == toMTC) {
+                c->incomingInternal += duration;
+            }
+            else {
+                c->incomingExternal += duration;
+            }
+        }
+        if (type == "SMSMO") {
+            if (SMSMO == toSMSMO) {
+                c->outSMSInternal += duration;
+            }
+            else {
+                c->outSMSExternal += duration;
+            }    
+        }
+        /*/if (type == "SMSMT") {
+            if (SMSMT == toSMSMT) {
+                c->inSMSInternal += duration;
+            }
+            else {
+                c->inSMSExternal += duration;
+                
+            }
+        }*/
+        
+    }
+    void searchCustomerBill() {
+        string MSISDN;
+        cout << "Enter MSISDN: ";
+        cin >> MSISDN;
+
+        for (auto& c : customers) {
+            if (c.MSISDN == MSISDN) {
+                cout << "Customer ID: " << c.MSISDN << " (" << c.brand << ")"<<endl;
+                cout << "* Services within the mobile operator *"<<endl;
+                cout << "Incoming: " << c.incomingInternal << " | Outgoing: " << c.outgoingInternal << endl;
+                cout << "* Services outside the mobile operator *"<<endl;
+                cout << "Incoming: " << c.incomingInternal << " | Outgoing: " << c.outgoingExternal <<endl;
+                return;
+            }
+            else {
+                cout << "MSISDN not found" << endl;;
+            }
+        }
+    }
+
+  
+    void saveCustomerBill() {
+        ofstream out("CB.txt");
+        for (auto& c : customers) {
+            out << "Customer ID: " << c.MSISDN << " (" << c.brand << ")"<<endl;
+            out << "In-Internal: " << c.incomingInternal << ", Out-Internal: " << c.outgoingInternal <<endl;
+            out << "In-External: " << c.incomingExternal << ", Out-External: " << c.outgoingExternal <<endl;
+        }
+        out.close();
+        cout << "Saved to CB.txt"<<endl;
+    }
+
+    void searchOperatorBill() {
+        string key;
+        cout << "Enter Brand or MMC: "<<endl;
+        cin >> key;
+
+        for (auto& o : operators) {
+            if (o.brand == key || o.mmc == key) {
+                cout << "Operator: " << o.brand << " (" << o.mmc << ")"<<endl;
+                cout << "Incoming Duration: " << o.inComingDuration << endl;
+                cout << "Outgoing Duration: " << o.outComingDuration <<endl;
+                return;
+            }
+        }
+
+        cout << "Operator is not found"<<endl;
+    }
+
+    void saveOperatorBill() {
+        ofstream out("IOSB.txt");
+        for (auto& o : operators) {
+            out << "Operator: " << o.brand << " (" << o.mmc << ")"<<endl;
+            out << "Incoming: " << o.inComingDuration << ", Outgoing: " << o.outComingDuration <<endl;
+        }
+        out.close();
+        cout << "Saved to IOSB.txt"<<endl;
+    }
+
+int main() {
+    bool loggedIn = false;
+
+    cout << "Welcome to CDR Billing App!\n";
+
+    while (!loggedIn) {
+        int choice;
+        cout << "\n1. Sign Up\n2. Login\n3. Exit\nChoice: ";
+        cin >> choice;
+
+        if (choice == 1) signUp();
+        else if (choice == 2) loggedIn = login();
+        else if (choice == 3) return 0;
+    }
+
+    while (true) {
+        int choice;
+        cout << "\n1. Process CDR File\n2. Print/Search Billing Info\n3. Logout\nChoice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            thread t1(processCustomer, "data.cd");
+          //  t1.join(); 
+            cout << "Processed the CDR data"<<endl;
+        }
+        else if (choice == 2) {
+            int sub;
+            cout << "\n1. Customer Billing\n2. Interoperator Billing\n3. Back\nChoice: ";
+            cin >> sub;
+
+            if (sub == 1) {
+                int opt;
+                cout << "1. Search MSISDN\n2. Save to CB.txt\nChoice: ";
+                cin >> opt;
+                if (opt == 1) searchCustomerBill();
+                else saveCustomerBill();
+            }
+            else if (sub == 2) {
+                int opt;
+                cout << "1. Search Operator\n2. Save to IOSB.txt\nChoice: ";
+                cin >> opt;
+                if (opt == 1) searchOperatorBilling();
+                else saveOperatorBillingToFile();
+            }
+        }
+        else if (choice == 3) {
+            cout << "It's Logged out."<<endl;
+            break;
+        }
+    }
+
+    return 0;
+}
