@@ -1,0 +1,88 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <vector>
+
+using namespace std;
+
+// Structure to hold each customer's billing info
+struct CustomerBilling {
+    string msisdn;
+    string name;
+    double amount;
+};
+
+// Function to load customer billing data from file
+vector<CustomerBilling> loadCustomerBilling(const string& filename) {
+    vector<CustomerBilling> records;
+    ifstream file(filename);
+    if (!file) {
+        cerr << "[FATAL] Could not open file: " << filename << endl;
+        return records;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        stringstream ss(line);
+        CustomerBilling cb;
+        ss >> cb.msisdn >> cb.name >> cb.amount;
+        records.push_back(cb);
+    }
+
+    file.close();
+    cout << "[INFO] Loaded " << records.size() << " records from " << filename << endl;
+    return records;
+}
+
+// Function to search customer by MSISDN
+void searchByMSISDN(const vector<CustomerBilling>& records, const string& msisdn) {
+    bool found = false;
+    for (const auto& cb : records) {
+        if (cb.msisdn == msisdn) {
+            cout << "[INFO] Customer Found:\n";
+            cout << "MSISDN: " << cb.msisdn << ", Name: " << cb.name << ", Amount: ?" << cb.amount << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+        cout << "[WARNING] No customer found with MSISDN: " << msisdn << endl;
+}
+
+// Function to print all records
+void printAll(const vector<CustomerBilling>& records) {
+    cout << "[INFO] Displaying all customer billing data:\n";
+    for (const auto& cb : records) {
+        cout << "MSISDN: " << cb.msisdn << ", Name: " << cb.name << ", Amount: ?" << cb.amount << endl;
+    }
+}
+
+int main() {
+    string filename = "CB.txt";
+    vector<CustomerBilling> records = loadCustomerBilling(filename);
+
+    int choice;
+    string msisdn;
+
+    cout << "\nCustomer Billing Menu:\n";
+    cout << "1. Search by MSISDN\n";
+    cout << "2. Display All Records\n";
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            cout << "Enter MSISDN: ";
+            cin >> msisdn;
+            searchByMSISDN(records, msisdn);
+            break;
+        case 2:
+            printAll(records);
+            break;
+        default:
+            cout << "[WARNING] Invalid choice\n";
+    }
+
+    return 0;
+}

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{56998658-869a-4092-a01b-3809f7b970aa}</ProjectGuid>
-    <RootNamespace>week09</RootNamespace>
+    <ProjectGuid>{6785a3c8-3001-40a1-b1e8-d2e4c70f28c0}</ProjectGuid>
+    <RootNamespace>practiceforMyself</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,12 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="telecom.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data.cd">
+    <ClCompile Include="p1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </Text>
+    </ClCompile>
+    <ClCompile Include="p2.cpp" />
+    <ClCompile Include="sturct.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
